@@ -4,8 +4,7 @@ first_name varchar(255),
 last_name varchar(255),
 phone_number varchar(20),
 email varchar(255),
-memberRole Enum('admin', 'regular'),
-photo_url text
+memberRole Enum('admin', 'regular')
 ) RETURNS json
     MODIFIES SQL DATA
 begin
@@ -15,16 +14,14 @@ begin
        member_last_name,
        member_phone_number,
        member_email,
-       member_role,
-       member_photo_url)
+       member_role)
        values(
          customMemberId,
          first_name,
          last_name,
          phone_number,
          email,
-         memberRole,
-         photo_url
+         memberRole
        );
       
       return get_team_member_by_id(customMemberId);

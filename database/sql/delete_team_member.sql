@@ -1,7 +1,7 @@
-create function delete_team_member(
+CREATE DEFINER=`root`@`localhost` FUNCTION `team`.`delete_team_member`(
 customMemberId varchar(50)
-)
-returns bool modifies sql data
+) RETURNS tinyint(1)
+    MODIFIES SQL DATA
 begin
     declare existing_team_member json;
     select get_team_member_by_id(customMemberId)
