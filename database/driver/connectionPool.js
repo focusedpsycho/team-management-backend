@@ -5,7 +5,6 @@ const dbUser = process.env.DB_USER;
 const dbName = process.env.DB_NAME;
 const dbPassword = process.env.DB_PASSWORD;
 
-console.log(dbName, dbPassword, dbUser, dbHost);
 
 async function main() {
 
