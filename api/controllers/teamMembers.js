@@ -7,18 +7,26 @@ const utils = require('../utils');
 exports.getTeamMembers = async (req, res) => {
     let start = 0;
     let count = constants.DEFAULT_RESPONSE_COUNT;
+
     if (req.query.start) {
-        start = parseInt(req.query.start);
-    }
+            start = parseInt(req.query.start);
+        }
     if (req.query.count) {
-        count = parseInt(req.query.count);
+            count = parseInt(req.query.count);
+        }
+    
+    if(isNaN(start) || isNaN(count)){
+        return res.status(constants.HttpCodes.BAD_REQUEST)
+        .send({ "message": "start and count must be integers" });
     }
+
     let teamMembers = null;
     try {
         teamMembers = await teamMembersService.getAllTeamMembers(start, count);
     }
     catch (e) {
-        return res.send(constants.HttpCodes.SERVER_ERROR, { "message": "Unexpected Error" });
+        return res.status(constants.HttpCodes.SERVER_ERROR)
+        .send({ "message": "Unexpected Error" });
     }
     return res.status(constants.HttpCodes.STATUS_OK).send(teamMembers);
 }
