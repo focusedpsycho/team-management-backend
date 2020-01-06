@@ -34,7 +34,8 @@ exports.getTeamMembers = async (req, res) => {
 exports.editTeamMember = async (req, res) => {
     const reqBodyErrors = validationResult(req);
     if (!reqBodyErrors.isEmpty()) {
-        return res.status(400).json({ errors: reqBodyErrors.array() });
+        return res.status(constants.HttpCodes.BAD_REQUEST)
+        .json({ errors: reqBodyErrors.array() });
     }
 
     let editedTeamMember = req.body;
@@ -55,7 +56,8 @@ exports.editTeamMember = async (req, res) => {
 exports.addTeamMember = async (req, res) => {
     const reqBodyErrors = validationResult(req);
     if (!reqBodyErrors.isEmpty()) {
-        return res.status(400).json({ errors: reqBodyErrors.array() });
+        return res.status(constants.HttpCodes.BAD_REQUEST)
+        .json({ errors: reqBodyErrors.array() });
     }
 
     newTeamMember = req.body;
